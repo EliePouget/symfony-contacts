@@ -53,3 +53,11 @@ Installez et activez le plugin Symfony Support
 
 Installez PHP CS Fixer et activez le : **composer require friendsofphp/php-cs-fixer --dev**
 http://cutrona/installation-configuration/phpstorm/#configuration-de-phpstorm-analyse-statique-tests-statiques-de-code-php
+
+## Commandes
+
+Lancer serveur web de test : **composer start**
+
+Vérification du code par PHP CS Fixer : **composer test:cs**
+
+Correction du code par PHP CS Fixer : **composer fix:cs**
