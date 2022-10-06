@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Hello many time!
+    Hello many times
 {% endblock %}
 {% block body %}
-    {% for i in 1..time %}
     <h1>
-        Hello many times {{ name }}
+        Hello many times {{ name }}!
     </h1>
+    {% for i in 1..time %}
+    <p>Hello {{ name | capitalize }}!</p>
     {% endfor %}
 {% endblock %}
 
