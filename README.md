@@ -43,6 +43,15 @@ Vérifier le chemin php.exe détecté
 
 Testez le fonctionnement dans un **Git Bash** : **composer --version**
 
+### Installer Codeception
+
+Lancez la commande avec composer : **composer require --dev --no-interaction codeception/codeception codeception/module-asserts codeception/module-symfony**
+
+Initialisez Codeception : **php vendor/bin/codecept bootstrap --namespace=App\\Tests --empty**
+
+Ajoutez les paramètres au fichier codeception.yml :
+**"params: - .env - .env.test**
+
 ### Lancement d'un nouveau projet Symfony 
 
 Commande : symfony --version 5.4 --webapp new symfony-contacts
