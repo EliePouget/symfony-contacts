@@ -92,6 +92,15 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "__commentaire": "Vérifie si tout les tests passent",
+        "test:codeception": [
+            "php vendor/bin/codecept run"
+        ],
+        "__commentaire": "lance le test mise en forme et le test de Codeception",
+        "test": [
+            "@test:cs",
+            "@test:codeception"
         ]
     },
     "conflict": {

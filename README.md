@@ -70,3 +70,8 @@ Lancer serveur web de test : **composer start**
 Vérification du code par PHP CS Fixer : **composer test:cs**
 
 Correction du code par PHP CS Fixer : **composer fix:cs**
+
+Lancer les tests Codeception : **test:codeception**
+
+Tester mise en forme et les tests Codeception : **test**
+
