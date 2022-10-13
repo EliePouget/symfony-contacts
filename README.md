@@ -76,9 +76,9 @@ Vérification du code par PHP CS Fixer : **composer test:cs**
 
 Correction du code par PHP CS Fixer : **composer fix:cs**
 
-Lancer les tests Codeception : **composer test:codeception**
+Détruit la base données en recréé une nouvelle avec des données et lance les tests Codeception : **composer test:codeception**
 
 Tester mise en forme et les tests Codeception : **composer test**
 
-Détruire la base de données pour en recréer une nouvelle avec des données : **composer db**
+Détruire la base de données pour en recréé une nouvelle avec des données : **composer db**
 

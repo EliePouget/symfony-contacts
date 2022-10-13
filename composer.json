@@ -101,6 +101,9 @@
             "@auto-scripts"
         ],
         "test:codeception": [
+            "php bin/console doctrine:database:drop --force --quiet --env=test",
+            "php bin/console doctrine:database:create --quiet --env=test",
+            "php bin/console doctrine:schema:create --quiet --env=test",
             "php vendor/bin/codecept run"
         ],
         "__commentaire": "lance le test mise en forme et le test de Codeception",
@@ -121,6 +124,7 @@
     "require-dev": {
         "codeception/codeception": "^5.0",
         "codeception/module-asserts": "^3.0",
+        "codeception/module-doctrine2": "^3.0",
         "codeception/module-symfony": "^3.1",
         "doctrine/doctrine-fixtures-bundle": "^3.4",
         "friendsofphp/php-cs-fixer": "^3.11",

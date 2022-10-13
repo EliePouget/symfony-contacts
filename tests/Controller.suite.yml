@@ -7,3 +7,6 @@ modules:
               app_path: 'src'
               environment: 'test'
         - Asserts:
+        - Doctrine2:
+              depends: Symfony
+              cleanup: true

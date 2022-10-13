@@ -13,9 +13,7 @@
     <ul>
         {% for contact in contactList %}
         <li>
-            <a href="{{ path('app_contact_id', {id: contact.id}) }}">
-                {{ contact.lastname }} {{ contact.firstname }}
-            </a>
+            <a href="{{ path('app_contact_id', {id: contact.id}) }}">{{ contact.lastname }}, {{ contact.firstname }}</a>
         </li>
         {% endfor %}
     </ul>

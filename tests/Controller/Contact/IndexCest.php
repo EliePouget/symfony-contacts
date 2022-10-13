@@ -2,6 +2,7 @@
 
 namespace App\Tests\Controller\Contact;
 
+use App\Factory\ContactFactory;
 use App\Tests\Support\ControllerTester;
 
 class IndexCest
@@ -22,18 +23,34 @@ class IndexCest
 
     public function allElementsInLi(ControllerTester $I): void
     {
+        ContactFactory::createMany(5);
         $I->amOnPage('/contact');
-        $I->seeNumberOfElements('li', 195);
-        $I->seeNumberOfElements('a', 195);
+        $I->seeNumberOfElements('li', 5);
+        $I->seeNumberOfElements('a', 5);
     }
 
-    public function firstLinkUsableWithGoodResponsePath(ControllerTester $I): void
+    public function firstLinkUsable(ControllerTester $I): void
     {
+        ContactFactory::createOne(['firstname' => 'Joe', 'lastname' => 'Aaaaaaaaaaaaaa']);
+        ContactFactory::createMany(4);
         $I->amOnPage('/contact');
         $I->seeResponseCodeIsSuccessful();
-        $I->click('Andre Sébastien');
-        $I->seeCurrentRouteIs('app_contact_id', ['id' => 49]);
-        $I->amOnPage('/contact/49');
+        $I->click('Aaaaaaaaaaaaaa, Joe');
+        $I->seeCurrentRouteIs('app_contact_id', ['id' => 1]);
         $I->seeResponseCodeIsSuccessful();
+    }
+
+    public function contactsShort(ControllerTester $I): void
+    {
+        ContactFactory::createOne(['firstname' => 'Etienne', 'lastname' => 'Bbbbbbbb']);
+        ContactFactory::createOne(['firstname' => 'Albert', 'lastname' => 'Aaaaaaaaaaaaaa']);
+        ContactFactory::createOne(['firstname' => 'Jean', 'lastname' => 'Aaaaaaaaaaaaaa']);
+        ContactFactory::createOne(['firstname' => 'Byll', 'lastname' => 'Bbbbbbbb']);
+        $I->amOnPage('/contact');
+        $id = $I->grabMultiple('a');
+        $I->assertSame('Aaaaaaaaaaaaaa, Albert', $id[0], 'Albert aaa');
+        $I->assertSame('Aaaaaaaaaaaaaa, Jean', $id[1], 'Jean aaa');
+        $I->assertSame('Bbbbbbbb, Byll', $id[2], 'Byll bbb');
+        $I->assertSame('Bbbbbbbb, Etienne', $id[3], 'Etienne bbb');
     }
 }
