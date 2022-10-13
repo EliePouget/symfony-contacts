@@ -63,7 +63,12 @@ Installez et activez le plugin Symfony Support
 Installez PHP CS Fixer et activez le : **composer require friendsofphp/php-cs-fixer --dev**
 http://cutrona/installation-configuration/phpstorm/#configuration-de-phpstorm-analyse-statique-tests-statiques-de-code-php
 
-## Commandes
+## Base de données
+
+La base données est composé de Contact qui ont comme attribut un nom "lastname", un prénom "firstname", un email "email" et un id "id" 
+L'email se composer de la facon suivante : prenom.nom@domain
+
+## Scripts
 
 Lancer serveur web de test : **composer start**
 
@@ -71,7 +76,9 @@ Vérification du code par PHP CS Fixer : **composer test:cs**
 
 Correction du code par PHP CS Fixer : **composer fix:cs**
 
-Lancer les tests Codeception : **test:codeception**
+Lancer les tests Codeception : **composer test:codeception**
 
-Tester mise en forme et les tests Codeception : **test**
+Tester mise en forme et les tests Codeception : **composer test**
+
+Détruire la base de données pour en recréer une nouvelle avec des données : **composer db**
 
