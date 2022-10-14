@@ -25,8 +25,7 @@ class IndexCest
     {
         ContactFactory::createMany(5);
         $I->amOnPage('/contact');
-        $I->seeNumberOfElements('li', 5);
-        $I->seeNumberOfElements('a', 5);
+        $I->seeNumberOfElements('.contacts', 5);
     }
 
     public function firstLinkUsable(ControllerTester $I): void
@@ -47,7 +46,7 @@ class IndexCest
         ContactFactory::createOne(['firstname' => 'Jean', 'lastname' => 'Aaaaaaaaaaaaaa']);
         ContactFactory::createOne(['firstname' => 'Byll', 'lastname' => 'Bbbbbbbb']);
         $I->amOnPage('/contact');
-        $id = $I->grabMultiple('a');
+        $id = $I->grabMultiple('.contacts');
         $I->assertSame('Aaaaaaaaaaaaaa, Albert', $id[0], 'Albert aaa');
         $I->assertSame('Aaaaaaaaaaaaaa, Jean', $id[1], 'Jean aaa');
         $I->assertSame('Bbbbbbbb, Byll', $id[2], 'Byll bbb');

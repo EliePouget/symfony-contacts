@@ -43,6 +43,7 @@ final class ContactFactory extends ModelFactory
         $email = transliterator_transliterate(
             'Any-Latin; Latin-ASCII',
             mb_strtolower($firstname.'.'.$lastname.'@'.self::faker()->domainName()));
+
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'firstname' => $firstname,
