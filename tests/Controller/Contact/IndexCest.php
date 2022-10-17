@@ -46,10 +46,26 @@ class IndexCest
         ContactFactory::createOne(['firstname' => 'Jean', 'lastname' => 'Aaaaaaaaaaaaaa']);
         ContactFactory::createOne(['firstname' => 'Byll', 'lastname' => 'Bbbbbbbb']);
         $I->amOnPage('/contact');
-        $id = $I->grabMultiple('.contacts');
-        $I->assertSame('Aaaaaaaaaaaaaa, Albert', $id[0], 'Albert aaa');
-        $I->assertSame('Aaaaaaaaaaaaaa, Jean', $id[1], 'Jean aaa');
-        $I->assertSame('Bbbbbbbb, Byll', $id[2], 'Byll bbb');
-        $I->assertSame('Bbbbbbbb, Etienne', $id[3], 'Etienne bbb');
+        $lastnames = $I->grabMultiple('.lastname');
+        $firstnames = $I->grabMultiple('.firstname');
+        $I->assertSame('Aaaaaaaaaaaaaa, Albert', $lastnames[0].', '.$firstnames[0], 'Albert aaa');
+        $I->assertSame('Aaaaaaaaaaaaaa, Jean', $lastnames[1].', '.$firstnames[1], 'Jean aaa');
+        $I->assertSame('Bbbbbbbb, Byll', $lastnames[2].', '.$firstnames[2], 'Byll bbb');
+        $I->assertSame('Bbbbbbbb, Etienne', $lastnames[3].', '.$firstnames[3], 'Etienne bbb');
+    }
+
+    public function orderBySearch(ControllerTester $I): void
+    {
+        ContactFactory::createOne(['firstname' => 'Etenne', 'lastname' => 'Labarre']);
+        ContactFactory::createOne(['firstname' => 'Test', 'lastname' => 'White']);
+        ContactFactory::createOne(['firstname' => 'Henry', 'lastname' => 'Test']);
+        ContactFactory::createOne(['firstname' => 'Lou', 'lastname' => 'World']);
+        $I->amOnPage('/contact?search=te');
+        $lastnames = $I->grabMultiple('.lastname');
+        $firstnames = $I->grabMultiple('.firstname');
+        $I->assertSame('Labarre, Etenne', $lastnames[0].', '.$firstnames[0]);
+        $I->assertSame('Test, Henry', $lastnames[1].', '.$firstnames[1]);
+        $I->assertSame('White, Test', $lastnames[2].', '.$firstnames[2]);
+        $I->seeNumberOfElements('.contacts', 3);
     }
 }
