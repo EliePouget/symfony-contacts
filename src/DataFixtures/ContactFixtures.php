@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ContactFixtures extends Fixture implements DependentFixtureInterface
+class ContactFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -19,13 +19,5 @@ class ContactFixtures extends Fixture implements DependentFixtureInterface
             }
             return $res;
         });
-    }
-
-    public function getDependencies()
-    {
-        return [
-            CategoryFixtures::class,
-            AppFixtures::class];
-        // TODO: Implement getDependencies() method.
     }
 }

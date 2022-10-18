@@ -21,7 +21,6 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             CategoryFixtures::class,
-            AppFixtures::class,
         ];
         // TODO: Implement getDependencies() method.
     }
