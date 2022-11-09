@@ -27,13 +27,8 @@ class Contact
     #[ORM\Column(length: 20)]
     private ?string $phone = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Category::class)]
-    private Collection $categories;
-
-    public function __construct()
-    {
-        $this->categories = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
+    private ?Category $category = null;
 
     public function getId(): ?int
     {
@@ -89,32 +84,22 @@ class Contact
     }
 
     /**
-     * @return Collection<int, Category>
+     * @return Category
      */
-    public function getCategories(): Collection
+    public function getCategories(): ?Category
     {
-        return $this->categories;
+        return $this->category;
     }
 
-    public function addCategory(Category $category): self
+    /**
+     * @return Category|null
+     */
+    /**
+     * @param Category|null $category
+     */
+    public function setCategory(?Category $category): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->setCategory($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Category $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getCategory() === $this) {
-                $category->setCategory(null);
-            }
-        }
-
+        $this->category = $category;
         return $this;
     }
 }

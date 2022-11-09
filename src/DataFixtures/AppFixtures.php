@@ -11,13 +11,14 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        CategoryFactory::createOne([]);
+        CategoryFactory::createOne(['name' => 'Particulier']);
     }
+
     public function getDependencies()
     {
-        return[
+        return [
             CategoryFixtures::class,
-            ContactFixtures::class
+            ContactFixtures::class,
         ];
         // TODO: Implement getDependencies() method.
     }

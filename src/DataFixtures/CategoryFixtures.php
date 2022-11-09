@@ -7,7 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoryFixtures extends Fixture implements DependentFixtureInterface
+class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -15,13 +15,5 @@ class CategoryFixtures extends Fixture implements DependentFixtureInterface
         foreach ($listNom as $categoryName) {
             CategoryFactory::createOne(['name' => $categoryName->name]);
         }
-    }
-
-    public function getDependencies()
-    {
-        return [
-            CategoryFixtures::class,
-        ];
-        // TODO: Implement getDependencies() method.
     }
 }

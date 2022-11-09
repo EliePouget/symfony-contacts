@@ -50,7 +50,6 @@ final class ContactFactory extends ModelFactory
             'lastname' => $lastname,
             'email' => $email,
             'phone' => self::faker()->e164PhoneNumber(),
-
         ];
     }
 

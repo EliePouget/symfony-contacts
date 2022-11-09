@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,13 +13,15 @@ class CategoryController extends AbstractController
     #[Route('/category', name: 'app_category')]
     public function index(CategoryRepository $categoryRepository): Response
     {
-        $listCategory = [];
-        foreach ($categoryRepository as $category) {
-            $listCategory += $category;
-        }
+        $categories = $categoryRepository->findAll();
 
         return $this->render('category/index.html.twig', [
-            'listCategory' => $listCategory,
+            'listCategory' => $categories,
         ]);
+    }
+    #[Route('/category/{id}', name: 'app_category_show')]
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', ['category'=> $category]);
     }
 }
