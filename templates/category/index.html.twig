@@ -13,7 +13,7 @@
     <ul>
     {% for Category in listCategory  %}
     <li>
-        {{ Category.category.name }}
+        <a href="{{ path('app_category_show', {id: Category.category.id}) }}">{{ Category.category.name }}</a>
         <span class="badge bg-secondary">{{ Category.count }}</span>
     </li>
     {% endfor %}

@@ -5,6 +5,9 @@
                 <span class="lastname">{{ contact.lastname }}</span>,
                 <span class="firstname">{{ contact.firstname }}</span>
             </a>
+            {%  if  category_show ?? true and contact.categories.name ?? null is not null %}
+            <span class="badge bg-secondary">{{ contact.categories.name}}</span>
+            {% endif %}
         </li>
     {% endfor %}
 </ul>

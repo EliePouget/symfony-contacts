@@ -58,6 +58,7 @@ class Category
             $this->contacts->add($contact);
             $contact->setCategory($this);
         }
+
         return $this;
     }
 

@@ -21,8 +21,8 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', ['contactList' => $contactList, 'search' => $search]);
     }
 
-    #[Route('/contact/{id2}', name: 'app_contact_id', requirements: ['id2' => '\d+'])]
-    #[Entity('contact', expr: 'repository.findWithCategory(id2)')]
+    #[Route('/contact/{id}', name: 'app_contact_id', requirements: ['id' => '\d+'])]
+    #[Entity('contact', expr: 'repository.findWithCategory(id)')]
     public function show(Contact $contact)
     {
         dump($contact);

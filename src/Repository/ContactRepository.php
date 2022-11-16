@@ -45,6 +45,8 @@ class ContactRepository extends ServiceEntityRepository
     public function search(string $recherche = ''): array
     {
         $qb = $this->createQueryBuilder('contacts')
+            ->leftJoin('contacts.category', 'ca')
+            ->addSelect('ca')
             ->setParameter('recherche', "%$recherche%")
             ->where('contacts.firstname LIKE :recherche')
             ->orWhere('contacts.lastname LIKE :recherche')
@@ -64,6 +66,7 @@ class ContactRepository extends ServiceEntityRepository
             ->setParameter('id', $id);
 
         $res = $qb->getQuery()->getOneOrNullResult();
+
         return $res;
     }
 //    /**
