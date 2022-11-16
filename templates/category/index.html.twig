@@ -13,7 +13,8 @@
     <ul>
     {% for Category in listCategory  %}
     <li>
-        {{ Category.name }}
+        {{ Category.category.name }}
+        <span class="badge bg-secondary">{{ Category.count }}</span>
     </li>
     {% endfor %}
     </ul>

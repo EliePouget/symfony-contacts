@@ -39,6 +39,10 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllAlphabeticallyWithContactCount()
+    {
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */
