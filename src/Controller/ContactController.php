@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Repository\ContactRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,10 +21,12 @@ class ContactController extends AbstractController
         return $this->render('contact/index.html.twig', ['contactList' => $contactList, 'search' => $search]);
     }
 
-    #[Route('/contact/{id}', name: 'app_contact_id', requirements: ['contactId' => '\d+'])]
-    #[ParamConverter('id', class: 'App\Entity\Contact')]
+    #[Route('/contact/{id2}', name: 'app_contact_id', requirements: ['id2' => '\d+'])]
+    #[Entity('contact', expr: 'repository.findWithCategory(id2)')]
     public function show(Contact $contact)
     {
+        dump($contact);
+
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
     }
 }
