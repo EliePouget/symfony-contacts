@@ -1,4 +1,4 @@
-%%%%%%# symfony-contacts Utilisation de symfony
+# symfony-contacts Utilisation de symfony
 ## Pouget Elie
 ## Installation / Configuration
 ### Installation exécutable symfony
