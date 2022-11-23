@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Édition de {{ contact.lastname}}, {{ contact.firstname }} </h1>
+    {{ form(form) }}
+{% endblock %}
+
+{% block title %}
+    Édition de {{ contact.lastname}}, {{ contact.firstname }}
+
+{% endblock %}
+

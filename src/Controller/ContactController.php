@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Repository\ContactRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,5 +29,27 @@ class ContactController extends AbstractController
         dump($contact);
 
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
+    }
+
+    #[Route('/contact/create', name: 'app_contact_create')]
+    public function create()
+    {
+        return $this->render('contact/create.html.twig');
+    }
+
+    #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
+    public function update(Contact $contact)
+    {
+        $form = $this->createForm(ContactType::class, $contact);
+
+        return $this->renderForm('contact/update.html.twig',
+            ['form' => $form,
+            'contact' => $contact, ]);
+    }
+
+    #[Route('/contact/{id}/delete', name: 'app_contact_delete', requirements: ['id' => '\d+'])]
+    public function delete(Contact $contact)
+    {
+        return $this->render('contact/delete.html.twig', ['contact' => $contact]);
     }
 }
