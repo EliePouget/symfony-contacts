@@ -1,10 +1,1 @@
-{% extends 'base.html.twig' %}
-{% set title = "Création d'un nouveau contact"%}
-{% block body %}
-    <h1>{{ title }}</h1>
-{% endblock %}
-
-{% block title %}
-    {{ title }}
-{% endblock %}
-
+{{ include('contact/_form.html.twig') }}

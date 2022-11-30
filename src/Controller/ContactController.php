@@ -16,6 +16,15 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact') ]
     public function index(Request $request, ContactRepository $contactRepository): Response
     {
+        $page = $request->query->get('page', 1);
+        $form = $this->createForm(Contact::class, $contactRepository);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $task = $form->getData();
+        }
         $search = $request->query->get('search');
         $contactList = $contactRepository->search("$search");
 
@@ -40,6 +49,7 @@ class ContactController extends AbstractController
     #[Route('/contact/{id}/update', name: 'app_contact_update', requirements: ['id' => '\d+'])]
     public function update(Contact $contact)
     {
+
         $form = $this->createForm(ContactType::class, $contact);
 
         return $this->renderForm('contact/update.html.twig',
